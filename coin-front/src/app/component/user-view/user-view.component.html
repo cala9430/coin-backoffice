@@ -10,8 +10,7 @@
     {{user.email}}
   </p>
   <ng-container *ngFor="let wallet of user.wallets">
-    <p>{{wallet.id}}</p>
-    <p>{{wallet.balance}}</p>
+    <app-wallet-view [wallet]="wallet"></app-wallet-view>
   </ng-container>
 </ng-container>
 

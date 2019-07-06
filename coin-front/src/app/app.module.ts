@@ -6,11 +6,13 @@ import { AppComponent } from './component/app.component';
 import { UserViewComponent } from './component/user-view/user-view.component';
 import {HttpClientModule} from "@angular/common/http";
 import {RouterModule} from "@angular/router";
+import { WalletViewComponent } from './component/wallet-view/wallet-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserViewComponent
+    UserViewComponent,
+    WalletViewComponent
   ],
   imports: [
     BrowserModule,
