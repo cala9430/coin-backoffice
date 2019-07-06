@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {User} from "../../domain/user";
 import {UserService} from "../../service/user.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-user-view',
@@ -9,7 +10,7 @@ import {UserService} from "../../service/user.service";
 })
 export class UserViewComponent implements OnInit {
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private router: ActivatedRoute) { }
 
   private _user : User;
 
@@ -17,8 +18,10 @@ export class UserViewComponent implements OnInit {
     return this._user;
   }
 
-  ngOnInit() {
-    this.userService.getUser("5d1ff152c81d8815fe9d5de0").subscribe((value:User) => {this._user = value});
+ngOnInit() {
+    this.router.paramMap.subscribe(paramMap => {
+      this.userService.getUser(paramMap.get("id")).subscribe((value:User) => {this._user = value});
+    });
   }
 
 }

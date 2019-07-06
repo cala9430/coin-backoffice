@@ -2,5 +2,16 @@
   <p>
     {{user.id}}
   </p>
+
+  <p>
+    {{user.name}}
+  </p>
+  <p>
+    {{user.email}}
+  </p>
+  <ng-container *ngFor="let wallet of user.wallets">
+    <p>{{wallet.id}}</p>
+    <p>{{wallet.balance}}</p>
+  </ng-container>
 </ng-container>
 
