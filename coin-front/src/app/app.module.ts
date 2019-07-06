@@ -7,12 +7,14 @@ import { UserViewComponent } from './component/user-view/user-view.component';
 import {HttpClientModule} from "@angular/common/http";
 import {RouterModule} from "@angular/router";
 import { WalletViewComponent } from './component/wallet-view/wallet-view.component';
+import { HeaderComponent } from './component/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     UserViewComponent,
-    WalletViewComponent
+    WalletViewComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
