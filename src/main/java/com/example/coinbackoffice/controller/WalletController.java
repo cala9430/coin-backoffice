@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/wallets")
+@CrossOrigin
 public class WalletController {
 
     @Autowired
