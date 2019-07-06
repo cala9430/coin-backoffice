@@ -2,8 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { UserViewComponent } from './user-view/user-view.component';
+import { AppComponent } from './component/app.component';
+import { UserViewComponent } from './component/user-view/user-view.component';
 import {HttpClientModule} from "@angular/common/http";
 import {RouterModule} from "@angular/router";
 
