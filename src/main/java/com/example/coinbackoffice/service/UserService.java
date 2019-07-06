@@ -1,5 +1,6 @@
 package com.example.coinbackoffice.service;
 
+import com.example.coinbackoffice.api.UserRequest;
 import com.example.coinbackoffice.entity.User;
 import com.example.coinbackoffice.entity.Wallet;
 import com.example.coinbackoffice.exception.UserNotFoundException;
@@ -24,8 +25,10 @@ public class UserService {
                 .orElseThrow(() -> new UserNotFoundException(String.format("Cannot find User with id %s", id)));
     }
 
-    public Object createUser(Object user){
+    public Object createUser(UserRequest user){
         User userEntity = new User();
+        userEntity.setName(user.getName());
+        userEntity.setEmail(user.getEmail());
         return this.userRepository.save(userEntity);
     }
 
