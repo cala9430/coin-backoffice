@@ -10,6 +10,13 @@ public class AbstractDocument {
     @Id
     private BigInteger id;
 
+    public AbstractDocument() {
+    }
+
+    public AbstractDocument(BigInteger id) {
+        this.id = id;
+    }
+
     public BigInteger getId() {
         return id;
     }
