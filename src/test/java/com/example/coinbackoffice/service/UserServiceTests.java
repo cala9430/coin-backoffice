@@ -2,6 +2,7 @@ package com.example.coinbackoffice.service;
 
 import static org.mockito.Mockito.*;
 
+import com.example.coinbackoffice.api.UserRequest;
 import com.example.coinbackoffice.entity.User;
 import com.example.coinbackoffice.exception.UserNotFoundException;
 import com.example.coinbackoffice.repository.UserRepository;
@@ -52,5 +53,34 @@ public class UserServiceTests {
     @Test(expected = UserNotFoundException.class)
     public void findUserNotPresent() throws UserNotFoundException {
          this.userService.getUser("2");
+    }
+
+    @Test
+    public void createUser() {
+        UserRequest request = new UserRequest();
+        request.setEmail("email");
+        request.setName("name");
+
+        User expectedUser = new User();
+        expectedUser.setEmail("email");
+        expectedUser.setName("name");
+
+        when(this.userRepository.save(expectedUser)).thenReturn(expectedUser);
+
+        User result = this.userService.createUser(request);
+        Assert.assertNotNull(result);
+    }
+
+    @Test(expected = Exception.class)
+    public void createWithoutName() {
+        UserRequest request = new UserRequest();
+        request.setEmail("email");
+
+        User expectedUser = new User();
+        expectedUser.setEmail("email");
+
+        when(this.userRepository.save(expectedUser)).thenThrow(new Exception());
+
+        this.userService.createUser(request);
     }
 }

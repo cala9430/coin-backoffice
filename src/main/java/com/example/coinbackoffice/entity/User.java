@@ -3,6 +3,7 @@ package com.example.coinbackoffice.entity;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.validation.constraints.NotNull;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +11,10 @@ import java.util.List;
 @Document(collection = "users")
 public class User extends AbstractDocument{
 
+    @NotNull
     private String name;
 
+    @NotNull
     private String email;
 
     @DBRef

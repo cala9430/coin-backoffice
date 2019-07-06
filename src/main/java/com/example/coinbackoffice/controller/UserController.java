@@ -28,7 +28,7 @@ public class UserController {
     }
 
     @PutMapping
-    public Object createUser(@RequestBody UserRequest user){
+    public User createUser(@RequestBody UserRequest user){
         return this.userService.createUser(user);
     }
 

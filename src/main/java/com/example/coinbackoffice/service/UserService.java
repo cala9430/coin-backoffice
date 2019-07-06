@@ -25,7 +25,7 @@ public class UserService {
                 .orElseThrow(() -> new UserNotFoundException(String.format("Cannot find User with id %s", id)));
     }
 
-    public Object createUser(UserRequest user){
+    public User createUser(UserRequest user){
         User userEntity = new User();
         userEntity.setName(user.getName());
         userEntity.setEmail(user.getEmail());
