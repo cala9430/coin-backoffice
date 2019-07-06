@@ -10,6 +10,10 @@ import java.util.List;
 @Document(collection = "users")
 public class User extends AbstractDocument{
 
+    private String name;
+
+    private String email;
+
     @DBRef
     private List<Wallet> wallets;
 
@@ -28,5 +32,21 @@ public class User extends AbstractDocument{
 
     public void addWallet(Wallet newWallet){
         this.wallets.add(newWallet);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

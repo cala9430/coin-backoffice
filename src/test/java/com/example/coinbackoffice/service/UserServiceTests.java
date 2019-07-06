@@ -3,6 +3,7 @@ package com.example.coinbackoffice.service;
 import static org.mockito.Mockito.*;
 
 import com.example.coinbackoffice.entity.User;
+import com.example.coinbackoffice.exception.UserNotFoundException;
 import com.example.coinbackoffice.repository.UserRepository;
 import org.junit.Assert;
 import org.junit.Before;
@@ -40,11 +41,16 @@ public class UserServiceTests {
     }
 
     @Test
-    public void findUserPresent() throws Exception {
+    public void findUserPresent() throws UserNotFoundException {
         User user = this.userService.getUser("1");
         Assert.assertNotNull(user);
         Assert.assertEquals(BigInteger.ONE, user.getId());
         Assert.assertNotNull(user.getWallets());
         Assert.assertEquals(0, user.getWallets().size());
+    }
+
+    @Test(expected = UserNotFoundException.class)
+    public void findUserNotPresent() throws UserNotFoundException {
+         this.userService.getUser("2");
     }
 }
