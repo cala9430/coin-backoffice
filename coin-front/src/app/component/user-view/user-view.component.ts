@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {User} from "../../domain/user";
 import {UserService} from "../../service/user.service";
 import {ActivatedRoute} from "@angular/router";
+import {WalletService} from "../../service/wallet.service";
 
 @Component({
   selector: 'app-user-view',
@@ -10,7 +11,7 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class UserViewComponent implements OnInit {
 
-  constructor(private userService: UserService, private router: ActivatedRoute) { }
+  constructor(private userService: UserService, private walletService: WalletService, private router: ActivatedRoute) { }
 
   private _user : User;
 
@@ -22,6 +23,13 @@ ngOnInit() {
     this.router.paramMap.subscribe(paramMap => {
       this.userService.getUser(paramMap.get("id")).subscribe((value:User) => {this._user = value});
     });
+  }
+
+  addWallet(){
+    this.walletService.addWalletToUser(this._user.id).subscribe(wallet=> {
+      this._user.wallets = this._user.wallets.concat(wallet);
+
+    }, error1 => console.error(error1));
   }
 
 }

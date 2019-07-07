@@ -1,9 +1,21 @@
 import { Injectable } from '@angular/core';
+import {environment} from "../../environments/environment";
+import {HttpClient} from "@angular/common/http";
+import {Wallet} from "../domain/wallet";
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class WalletService {
 
-  constructor() { }
+  baseUrl = environment.baseUrl;
+
+  constructor(private http: HttpClient) { }
+
+  addWalletToUser(userId: string):Observable<Wallet>{
+    return this.http.put<Wallet>(this.baseUrl + "wallets?userId=" + userId, {});
+  }
+
+
 }

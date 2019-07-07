@@ -1,16 +1,33 @@
-<ng-container *ngIf="user">
-  <p>
-    {{user.id}}
-  </p>
+<ng-container *ngIf="user; else userNotFound">
+  <mat-card>
+    <mat-card-title>User {{user.id}}</mat-card-title>
+    <mat-list>
+      <mat-list-item><span>Name: {{user.name}}</span></mat-list-item>
+      <mat-divider></mat-divider>
+      <mat-list-item><span>Email: {{user.email}}</span></mat-list-item>
+    </mat-list>
+  </mat-card>
+  <br>
+  <mat-card>
+    <mat-list>
+      <h3 mat-subheader>Wallets</h3>
+      <mat-list-item *ngFor="let wallet of user.wallets">
+        <mat-icon mat-list-icon>payment</mat-icon>
+        <h4 mat-line>{{wallet.id}}</h4>
+        <p mat-line>Balance: {{wallet.balance}}</p>
+        <p mat-line><button mat-button color="primary">Transfer</button></p>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="addWallet()">Add wallet</button>
+    </mat-card-actions>
+  </mat-card>
 
-  <p>
-    {{user.name}}
-  </p>
-  <p>
-    {{user.email}}
-  </p>
-  <ng-container *ngFor="let wallet of user.wallets">
-    <app-wallet-view [wallet]="wallet"></app-wallet-view>
-  </ng-container>
 </ng-container>
 
+<ng-template #userNotFound>
+  <mat-card>
+    <span>User not found</span>
+  </mat-card>
+</ng-template>

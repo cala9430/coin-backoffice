@@ -14,7 +14,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {
   MatButtonModule, MatCardModule,
   MatFormFieldModule,
-  MatIconModule, MatInputModule,
+  MatIconModule, MatInputModule, MatListModule,
   MatMenuModule,
   MatSelectModule,
   MatToolbarModule
@@ -43,6 +43,7 @@ import {ReactiveFormsModule} from "@angular/forms";
     MatSelectModule,
     MatInputModule,
     ReactiveFormsModule,
+
     RouterModule.forRoot([
         {path: 'user/create', component: UserCreateComponent},
         {path: 'user/:id', component: UserViewComponent},
@@ -51,7 +52,8 @@ import {ReactiveFormsModule} from "@angular/forms";
 
       {enableTracing: true} // <-- debugging purposes only
     ),
-    MatCardModule
+    MatCardModule,
+    MatListModule
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]

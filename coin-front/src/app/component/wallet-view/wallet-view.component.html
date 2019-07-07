@@ -1,2 +1,8 @@
-<p>{{wallet.id}}</p>
-<p>{{wallet.balance}}</p>
+<ng-container *ngIf="wallet">
+  <mat-card>
+    <mat-list>
+      <mat-list-item><span>Id: {{wallet.id}}</span></mat-list-item>
+      <mat-list-item><span>Balance: {{wallet.balance}}</span></mat-list-item>
+    </mat-list>
+  </mat-card>
+</ng-container>
