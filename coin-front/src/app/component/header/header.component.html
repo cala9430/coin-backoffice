@@ -1,1 +1,30 @@
-<p>header works!</p>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Pagacoin</span>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    <div>
+      <button mat-button [matMenuTriggerFor]="usersMenu">
+        <mat-icon>perm_identity</mat-icon>
+        <span>Users</span>
+      </button>
+      <mat-menu #usersMenu="matMenu">
+        <button mat-menu-item routerLink="/user/create">
+          <mat-icon>dialpad</mat-icon>
+          <span>Create</span>
+        </button>
+        <button mat-menu-item>Search</button>
+      </mat-menu>
+    </div>
+    <div>
+      <button mat-button [matMenuTriggerFor]="walletsMenu">
+        <mat-icon>payment</mat-icon>
+        <span>Wallets</span>
+      </button>
+      <mat-menu #walletsMenu="matMenu">
+        <button mat-menu-item>Create</button>
+        <button mat-menu-item>Search</button>
+      </mat-menu>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

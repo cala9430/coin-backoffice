@@ -1,6 +1,7 @@
 package com.example.coinbackoffice.controller;
 
 import com.example.coinbackoffice.api.UserRequest;
+import com.example.coinbackoffice.api.UserResponse;
 import com.example.coinbackoffice.entity.User;
 import com.example.coinbackoffice.entity.Wallet;
 import com.example.coinbackoffice.service.UserService;
@@ -28,7 +29,7 @@ public class UserController {
     }
 
     @PutMapping
-    public User createUser(@RequestBody UserRequest user){
+    public UserResponse createUser(@RequestBody UserRequest user){
         return this.userService.createUser(user);
     }
 

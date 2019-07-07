@@ -10,6 +10,16 @@ import { WalletViewComponent } from './component/wallet-view/wallet-view.compone
 import { HeaderComponent } from './component/header/header.component';
 import { UserCreateComponent } from './component/user-create/user-create.component';
 import { UserHistoryComponent } from './component/user-history/user-history.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {
+  MatButtonModule, MatCardModule,
+  MatFormFieldModule,
+  MatIconModule, MatInputModule,
+  MatMenuModule,
+  MatSelectModule,
+  MatToolbarModule
+} from "@angular/material";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -24,14 +34,24 @@ import { UserHistoryComponent } from './component/user-history/user-history.comp
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatIconModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
+    ReactiveFormsModule,
     RouterModule.forRoot([
-      { path: 'user/:id', component: UserViewComponent },
-      { path: 'user/:id/history', component: UserHistoryComponent },
-      { path: 'user/create', component: UserCreateComponent }
+        {path: 'user/create', component: UserCreateComponent},
+        {path: 'user/:id', component: UserViewComponent},
+        {path: 'user/:id/history', component: UserHistoryComponent}
       ],
 
-      { enableTracing: true } // <-- debugging purposes only
-    )
+      {enableTracing: true} // <-- debugging purposes only
+    ),
+    MatCardModule
   ],
   providers: [HttpClientModule],
   bootstrap: [AppComponent]

@@ -16,4 +16,8 @@ export class UserService {
   getUser(id:string):Observable<User>{
     return this.http.get<User>(this.baseUrl+"users/"+id);
   }
+
+  createUser(user:User):Observable<User>{
+    return this.http.put<User>(this.baseUrl + "users", user);
+  }
 }

@@ -2,22 +2,21 @@ package com.example.coinbackoffice.entity;
 
 import org.springframework.data.annotation.Id;
 
-import java.math.BigInteger;
 import java.util.Objects;
 
 public class AbstractDocument {
 
     @Id
-    private BigInteger id;
+    private String id;
 
     public AbstractDocument() {
     }
 
-    public AbstractDocument(BigInteger id) {
+    public AbstractDocument(String id) {
         this.id = id;
     }
 
-    public BigInteger getId() {
+    public String getId() {
         return id;
     }
 

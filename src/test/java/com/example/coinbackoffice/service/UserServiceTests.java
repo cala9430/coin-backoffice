@@ -3,6 +3,7 @@ package com.example.coinbackoffice.service;
 import static org.mockito.Mockito.*;
 
 import com.example.coinbackoffice.api.UserRequest;
+import com.example.coinbackoffice.api.UserResponse;
 import com.example.coinbackoffice.entity.User;
 import com.example.coinbackoffice.exception.UserNotFoundException;
 import com.example.coinbackoffice.repository.UserRepository;
@@ -38,7 +39,7 @@ public class UserServiceTests {
 
     @Before
     public void setUp() throws Exception {
-        when(userRepository.findById("1")).thenReturn(Optional.of(new User(BigInteger.ONE)));
+        when(userRepository.findById("1")).thenReturn(Optional.of(new User("1")));
     }
 
     @Test
@@ -67,7 +68,7 @@ public class UserServiceTests {
 
         when(this.userRepository.save(expectedUser)).thenReturn(expectedUser);
 
-        User result = this.userService.createUser(request);
+        UserResponse result = this.userService.createUser(request);
         Assert.assertNotNull(result);
     }
 

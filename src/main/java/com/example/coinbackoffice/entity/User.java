@@ -4,7 +4,6 @@ import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import javax.validation.constraints.NotNull;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +23,7 @@ public class User extends AbstractDocument{
         this.wallets = new ArrayList<>();
     }
 
-    public User(BigInteger id) {
+    public User(String id) {
         super(id);
         this.wallets = new ArrayList<>();
     }

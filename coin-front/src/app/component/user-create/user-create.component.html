@@ -1,1 +1,18 @@
-<p>user-create works!</p>
+<mat-card>
+  <mat-card-title>Create User</mat-card-title>
+  <div class="example-container">
+    <form class="example-container" [formGroup]="options">
+      <mat-form-field>
+        <input matInput placeholder="Enter full name" formControlName="name" required>
+        <mat-error *ngIf="options.invalid">{{getErrorMessage("name")}}</mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Enter email" formControlName="email" required>
+        <mat-error *ngIf="options.invalid">{{getErrorMessage("email")}}</mat-error>
+      </mat-form-field>
+    </form>
+
+    <button mat-raised-button color="primary" [disabled]="options.invalid" (click)="createUser()">Submit</button>
+  </div>
+</mat-card>
