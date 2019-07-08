@@ -1,6 +1,7 @@
 package com.example.coinbackoffice.config;
 
 import com.mongodb.MongoClient;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.config.AbstractMongoConfiguration;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
@@ -9,6 +10,9 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableMongoRepositories(basePackages = "com.example.coinbackoffice")
 public class MongoConfig extends AbstractMongoConfiguration {
 
+    @Value("${mongo.host}")
+    private String mongoHost;
+
     @Override
     protected String getDatabaseName() {
         return "pagacoin";
@@ -16,6 +20,6 @@ public class MongoConfig extends AbstractMongoConfiguration {
 
     @Override
     public MongoClient mongoClient() {
-        return new MongoClient("host.docker.internal", 27017);
+        return new MongoClient(mongoHost, 27017);
     }
 }
