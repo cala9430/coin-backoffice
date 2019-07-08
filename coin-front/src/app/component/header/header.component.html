@@ -9,11 +9,12 @@
         <span>Users</span>
       </button>
       <mat-menu #usersMenu="matMenu">
+        <button mat-menu-item routerLink="/users">
+          <span>List</span>
+        </button>
         <button mat-menu-item routerLink="/user/create">
-          <mat-icon>dialpad</mat-icon>
           <span>Create</span>
         </button>
-        <button mat-menu-item>Search</button>
       </mat-menu>
     </div>
     <div>

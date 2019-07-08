@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {WalletService} from "../../service/wallet.service";
 import {Wallet} from "../../domain/wallet";
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import { FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-wallet-transfer',
@@ -13,10 +13,7 @@ export class WalletTransferComponent implements OnInit {
 
   private _wallet : Wallet;
 
-  options: FormGroup = new FormGroup({
-    to : new FormControl('', [Validators.required]),
-    amount : new FormControl('', [Validators.required, Validators.min(0.01)])
-  });
+  options: FormGroup;
 
   constructor(private walletService: WalletService, private router: ActivatedRoute) {
 
@@ -28,7 +25,17 @@ export class WalletTransferComponent implements OnInit {
 
   ngOnInit() {
     this.router.paramMap.subscribe(paramMap => {
-      this.walletService.getWallet(paramMap.get("id")).subscribe((value:Wallet) => {this._wallet = value});
+      this.walletService.getWallet(paramMap.get("id")).subscribe((value:Wallet) => {
+        this._wallet = value;
+
+        this.options = new FormGroup({
+          to : new FormControl('', [Validators.required]),
+          amount : new FormControl('', [
+            Validators.required,
+            Validators.min(0.01),
+            Validators.max(this._wallet.balance)])
+        });
+      });
     });
   }
 
@@ -42,6 +49,7 @@ export class WalletTransferComponent implements OnInit {
   getErrorMessage(name:string) {
     return this.options.get(name).hasError('required') ? 'You must enter a value' :
       this.options.get(name).hasError('min') ? 'Must be greater than 0.01' :
+      this.options.get(name).hasError('max') ? 'Must be smaller or equals than ' + this._wallet.balance :
         '';
   }
 

@@ -23,6 +23,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import { UserSearchComponent } from './component/user-search/user-search.component';
 import { WalletSearchComponent } from './component/wallet-search/wallet-search.component';
 import { WalletTransferComponent } from './component/wallet-transfer/wallet-transfer.component';
+import { UserListComponent } from './component/user-list/user-list.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { WalletTransferComponent } from './component/wallet-transfer/wallet-tran
     UserHistoryComponent,
     UserSearchComponent,
     WalletSearchComponent,
-    WalletTransferComponent
+    WalletTransferComponent,
+    UserListComponent
   ],
   imports: [
     BrowserModule,
@@ -51,6 +53,7 @@ import { WalletTransferComponent } from './component/wallet-transfer/wallet-tran
     ReactiveFormsModule,
 
     RouterModule.forRoot([
+        {path: 'users', component: UserListComponent},
         {path: 'user/create', component: UserCreateComponent},
         {path: 'user/search', component: UserSearchComponent},
         {path: 'user/:id', component: UserViewComponent},

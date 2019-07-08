@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {User} from "../../domain/user";
 import {UserService} from "../../service/user.service";
 import {ActivatedRoute} from "@angular/router";
@@ -13,6 +13,7 @@ export class UserViewComponent implements OnInit {
 
   constructor(private userService: UserService, private walletService: WalletService, private router: ActivatedRoute) { }
 
+  @Input("user")
   private _user : User;
 
   get user(): User {
@@ -20,9 +21,11 @@ export class UserViewComponent implements OnInit {
   }
 
 ngOnInit() {
-    this.router.paramMap.subscribe(paramMap => {
-      this.userService.getUser(paramMap.get("id")).subscribe((value:User) => {this._user = value});
-    });
+    if(!this._user){
+      this.router.paramMap.subscribe(paramMap => {
+        this.userService.getUser(paramMap.get("id")).subscribe((value:User) => {this._user = value});
+      });
+    }
   }
 
   addWallet(){

@@ -13,6 +13,10 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+  listUsers():Observable<Array<User>>{
+    return this.http.get<Array<User>>(this.baseUrl + "users");
+  }
+
   getUser(id:string):Observable<User>{
     return this.http.get<User>(this.baseUrl+"users/"+id);
   }

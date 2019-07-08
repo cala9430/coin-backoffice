@@ -1,24 +1,26 @@
-<mat-card>
-  <mat-card-title>Transfer from wallet</mat-card-title>
-  <app-wallet-view [wallet]="wallet"></app-wallet-view>
-</mat-card>
-<br>
-<mat-card>
-  <mat-card-title>Transfer to</mat-card-title>
-  <mat-card-content>
-    <form class="example-container" [formGroup]="options">
-      <mat-form-field>
-        <input matInput placeholder="Enter target wallet" formControlName="to" required>
-        <mat-error *ngIf="options.invalid">{{getErrorMessage("to")}}</mat-error>
-      </mat-form-field>
+<ng-container *ngIf="wallet">
+  <mat-card>
+    <mat-card-title>Transfer from wallet</mat-card-title>
+    <app-wallet-view [wallet]="wallet"></app-wallet-view>
+  </mat-card>
+  <br>
+  <mat-card>
+    <mat-card-title>Transfer to</mat-card-title>
+    <mat-card-content>
+      <form class="example-container" [formGroup]="options">
+        <mat-form-field>
+          <input matInput placeholder="Enter target wallet" formControlName="to" required>
+          <mat-error *ngIf="options.invalid">{{getErrorMessage("to")}}</mat-error>
+        </mat-form-field>
 
-      <mat-form-field>
-        <input matInput placeholder="Enter amount to transfer" formControlName="amount" required>
-        <mat-error *ngIf="options.invalid">{{getErrorMessage("amount")}}</mat-error>
-      </mat-form-field>
-    </form>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-raised-button color="primary" [disabled]="options.invalid" (click)="doTransfer()">Transfer</button>
-  </mat-card-actions>
-</mat-card>
+        <mat-form-field>
+          <input matInput placeholder="Enter amount to transfer" formControlName="amount" required>
+          <mat-error *ngIf="options.invalid">{{getErrorMessage("amount")}}</mat-error>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" [disabled]="options.invalid" (click)="doTransfer()">Transfer</button>
+    </mat-card-actions>
+  </mat-card>
+</ng-container>
