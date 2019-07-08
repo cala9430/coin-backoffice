@@ -46,7 +46,7 @@ public class UserServiceTests {
     public void findUserPresent() throws UserNotFoundException {
         User user = this.userService.getUser("1");
         Assert.assertNotNull(user);
-        Assert.assertEquals(BigInteger.ONE, user.getId());
+        Assert.assertEquals("1", user.getId());
         Assert.assertNotNull(user.getWallets());
         Assert.assertEquals(0, user.getWallets().size());
     }
