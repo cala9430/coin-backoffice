@@ -42,4 +42,8 @@ public class UserService {
     public Object getUserHistory(String id){
         throw new UnsupportedOperationException();
     }
+
+    public void update(User user) {
+        this.userRepository.save(user);
+    }
 }

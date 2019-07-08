@@ -4,7 +4,6 @@ import com.example.coinbackoffice.api.TransferRequest;
 import com.example.coinbackoffice.entity.User;
 import com.example.coinbackoffice.entity.Wallet;
 import com.example.coinbackoffice.exception.InsufficientFundsException;
-import com.example.coinbackoffice.repository.UserRepository;
 import com.example.coinbackoffice.repository.WalletRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +19,7 @@ public class WalletService {
     private WalletRepository walletRepository;
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     public List<Wallet> listWallets(){
         return this.walletRepository.findAll();
@@ -32,18 +31,12 @@ public class WalletService {
 
     @Transactional
     public Wallet createWallet(String userId) throws Exception {
-        Optional<User> userOptional = userRepository.findById(userId);
-        if(!userOptional.isPresent()){
-            throw new Exception();
-        }
+        User user = this.userService.getUser(userId);
 
         Wallet wallet = new Wallet();
-        User user = userOptional.get();
-
         user.addWallet(wallet);
-
         wallet = this.walletRepository.save(wallet);
-        this.userRepository.save(user);
+        this.userService.update(user);
 
         return wallet;
     }
