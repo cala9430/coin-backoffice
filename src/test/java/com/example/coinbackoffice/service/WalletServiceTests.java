@@ -4,7 +4,6 @@ import com.example.coinbackoffice.api.TransferRequest;
 import com.example.coinbackoffice.entity.User;
 import com.example.coinbackoffice.entity.Wallet;
 import com.example.coinbackoffice.exception.InsufficientFundsException;
-import com.example.coinbackoffice.exception.UserNotFoundException;
 import com.example.coinbackoffice.repository.UserRepository;
 import com.example.coinbackoffice.repository.WalletRepository;
 import org.junit.Assert;
@@ -36,6 +35,9 @@ public class WalletServiceTests {
 
     @MockBean
     private UserRepository userRepository;
+
+    @MockBean
+    private TransactionService transactionService;
 
     @TestConfiguration
     static class configuration{

@@ -1,1 +1,17 @@
-<p>user-history works!</p>
+<mat-card>
+  <mat-card-title>Transactions of {{userId}}</mat-card-title>
+  <ng-container *ngIf="transactions">
+    <mat-list >
+      <mat-list-item *ngFor="let transaction of transactions; index as i; ">
+        <mat-icon mat-list-icon>done_all</mat-icon>
+        <p mat-line>Transaction {{i+1}}</p>
+        <p mat-line>From: {{transaction.from.id}}</p>
+        <p mat-line>To: {{transaction.to.id}}</p>
+        <p mat-line>Amount: {{transaction.amount}}</p>
+        <mat-divider></mat-divider>
+      </mat-list-item>
+    </mat-list>
+  </ng-container>
+
+</mat-card>
+

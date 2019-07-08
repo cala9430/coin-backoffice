@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {WalletService} from "../../service/wallet.service";
 import {Wallet} from "../../domain/wallet";
 import { FormControl, FormGroup, Validators} from "@angular/forms";
+import {UserService} from "../../service/user.service";
 
 @Component({
   selector: 'app-wallet-transfer',
@@ -15,7 +16,7 @@ export class WalletTransferComponent implements OnInit {
 
   options: FormGroup;
 
-  constructor(private walletService: WalletService, private router: ActivatedRoute) {
+  constructor(private walletService: WalletService, private route: ActivatedRoute, private router: Router) {
 
   }
 
@@ -24,7 +25,7 @@ export class WalletTransferComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.router.paramMap.subscribe(paramMap => {
+    this.route.paramMap.subscribe(paramMap => {
       this.walletService.getWallet(paramMap.get("id")).subscribe((value:Wallet) => {
         this._wallet = value;
 
@@ -43,6 +44,7 @@ export class WalletTransferComponent implements OnInit {
     this.walletService.doTransfer(this._wallet.id, this.options.get("to").value, this.options.get("amount").value)
       .subscribe(value => {
       this._wallet = value;
+      this.router.navigateByUrl("/users");
     })
   }
 
