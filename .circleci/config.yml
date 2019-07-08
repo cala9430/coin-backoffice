@@ -23,7 +23,7 @@ jobs:
           command: docker login -u $DOCKER_USER -p $DOCKER_PASS
 
       # Download and cache npm dependencies
-      - # Install project dependencies
+      # Install project dependencies
       - run:
           name: Install local dependencies
           command: npm install
