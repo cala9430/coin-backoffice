@@ -53,7 +53,7 @@ public class WalletService {
     @Transactional
     public Wallet transferMoney(String id, TransferRequest transfer) throws Exception {
         Wallet walletFrom = this.getWallet(id);
-        if(walletFrom.getBalance().compareTo(transfer.getAmount()) > 0){
+        if(walletFrom.getBalance().compareTo(transfer.getAmount()) < 0){
             throw new InsufficientFundsException();
         }
 

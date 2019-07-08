@@ -1,4 +1,4 @@
 export class Wallet {
-  id: number;
+  id: string;
   balance: number;
 }

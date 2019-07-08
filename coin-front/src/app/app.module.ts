@@ -20,6 +20,9 @@ import {
   MatToolbarModule
 } from "@angular/material";
 import {ReactiveFormsModule} from "@angular/forms";
+import { UserSearchComponent } from './component/user-search/user-search.component';
+import { WalletSearchComponent } from './component/wallet-search/wallet-search.component';
+import { WalletTransferComponent } from './component/wallet-transfer/wallet-transfer.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,10 @@ import {ReactiveFormsModule} from "@angular/forms";
     WalletViewComponent,
     HeaderComponent,
     UserCreateComponent,
-    UserHistoryComponent
+    UserHistoryComponent,
+    UserSearchComponent,
+    WalletSearchComponent,
+    WalletTransferComponent
   ],
   imports: [
     BrowserModule,
@@ -46,8 +52,13 @@ import {ReactiveFormsModule} from "@angular/forms";
 
     RouterModule.forRoot([
         {path: 'user/create', component: UserCreateComponent},
+        {path: 'user/search', component: UserSearchComponent},
         {path: 'user/:id', component: UserViewComponent},
-        {path: 'user/:id/history', component: UserHistoryComponent}
+        {path: 'user/:id/history', component: UserHistoryComponent},
+        {path: 'wallet/search', component: WalletSearchComponent},
+        {path: 'wallet/:id/transfer', component: WalletTransferComponent},
+        {path: 'wallet/:id', component: WalletViewComponent},
+
       ],
 
       {enableTracing: true} // <-- debugging purposes only
