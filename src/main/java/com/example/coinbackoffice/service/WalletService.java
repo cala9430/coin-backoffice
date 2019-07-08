@@ -1,11 +1,14 @@
 package com.example.coinbackoffice.service;
 
+import com.example.coinbackoffice.api.TransferRequest;
 import com.example.coinbackoffice.entity.User;
 import com.example.coinbackoffice.entity.Wallet;
+import com.example.coinbackoffice.exception.InsufficientFundsException;
 import com.example.coinbackoffice.repository.UserRepository;
 import com.example.coinbackoffice.repository.WalletRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,7 +30,8 @@ public class WalletService {
         return this.walletRepository.findById(id).orElseThrow(Exception::new);
     }
 
-    public Object createWallet(String userId) throws Exception {
+    @Transactional
+    public Wallet createWallet(String userId) throws Exception {
         Optional<User> userOptional = userRepository.findById(userId);
         if(!userOptional.isPresent()){
             throw new Exception();
@@ -46,7 +50,20 @@ public class WalletService {
         return wallet;
     }
 
-    public Object transferMoney(String id, Object transfer){
-        throw new UnsupportedOperationException();
+    @Transactional
+    public Wallet transferMoney(String id, TransferRequest transfer) throws Exception {
+        Wallet walletFrom = this.getWallet(id);
+        if(walletFrom.getBalance().compareTo(transfer.getAmount()) > 0){
+            throw new InsufficientFundsException();
+        }
+
+        Wallet walletTo = this.getWallet(transfer.getTo());
+
+        walletFrom.setBalance(walletFrom.getBalance().add(transfer.getAmount().negate()));
+        walletTo.setBalance(walletFrom.getBalance().add(transfer.getAmount()));
+
+        this.walletRepository.save(walletFrom);
+        this.walletRepository.save(walletTo);
+        return walletFrom;
     }
 }

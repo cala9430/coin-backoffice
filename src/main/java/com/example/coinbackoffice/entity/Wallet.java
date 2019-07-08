@@ -13,6 +13,11 @@ public class Wallet extends AbstractDocument{
         this.balance = BigDecimal.ZERO;
     }
 
+    public Wallet(String id, BigDecimal balance) {
+        super(id);
+        this.balance = balance;
+    }
+
     public BigDecimal getBalance() {
         return balance;
     }

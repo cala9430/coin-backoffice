@@ -1,5 +1,6 @@
 package com.example.coinbackoffice.controller;
 
+import com.example.coinbackoffice.api.TransferRequest;
 import com.example.coinbackoffice.entity.Wallet;
 import com.example.coinbackoffice.service.WalletService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class WalletController {
     }
 
     @PostMapping("/{id}")
-    public Object transferMoney(@PathVariable("id") String id, @RequestBody Object transfer){
-        throw new UnsupportedOperationException();
+    public Wallet transferMoney(@PathVariable("id") String id, @RequestBody TransferRequest transfer) throws Exception {
+        return this.walletService.transferMoney(id, transfer);
     }
 }

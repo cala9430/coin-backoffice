@@ -12,7 +12,7 @@ public class AbstractDocument {
     public AbstractDocument() {
     }
 
-    public AbstractDocument(String id) {
+    protected AbstractDocument(String id) {
         this.id = id;
     }
 
