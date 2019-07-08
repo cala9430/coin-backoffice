@@ -16,6 +16,6 @@ public class MongoConfig extends AbstractMongoConfiguration {
 
     @Override
     public MongoClient mongoClient() {
-        return new MongoClient("localhost", 27017);
+        return new MongoClient("host.docker.internal", 27017);
     }
 }

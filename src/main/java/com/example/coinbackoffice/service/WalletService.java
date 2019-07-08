@@ -37,8 +37,6 @@ public class WalletService {
             throw new Exception();
         }
 
-        // TODO: handle transaction
-
         Wallet wallet = new Wallet();
         User user = userOptional.get();
 
