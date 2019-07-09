@@ -7,7 +7,6 @@ import com.example.coinbackoffice.exception.InsufficientFundsException;
 import com.example.coinbackoffice.repository.UserRepository;
 import com.example.coinbackoffice.repository.WalletRepository;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,10 +45,6 @@ public class WalletServiceTests {
             return new WalletService();
         }
 
-    }
-
-    @Before
-    public void setUp() throws Exception {
     }
 
     @Test

@@ -1,5 +1,6 @@
 package com.example.coinbackoffice.controller;
 
+import com.example.coinbackoffice.api.TransactionResponse;
 import com.example.coinbackoffice.api.UserRequest;
 import com.example.coinbackoffice.api.UserResponse;
 import com.example.coinbackoffice.entity.User;
@@ -11,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/users")
@@ -44,7 +46,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}/history")
-    public Object getUserHistory(@PathVariable("id") String id) throws UserNotFoundException {
+    public Set<TransactionResponse> getUserHistory(@PathVariable("id") String id) throws UserNotFoundException {
         return this.transactionService.findTransactionsForWallets(this.userService.getUser(id).getWallets());
     }
 }

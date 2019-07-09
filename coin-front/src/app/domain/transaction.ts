@@ -1,7 +1,6 @@
-import {Wallet} from "./wallet";
-
 export class Transaction {
-  from: Wallet;
-  to:Wallet;
+  from: string;
+  to:string;
   amount: number;
+  received: boolean;
 }
